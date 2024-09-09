@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     public float JumpPower;
     public Rigidbody Jugador;
     private bool CanJump;
+    public float fallMultiplier = 2.5f;
     void Update()
     {
         inputControl.x = Input.GetAxis("Horizontal");
@@ -20,11 +21,14 @@ public class PlayerMovement : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                Jugador.AddForce(0f, JumpPower, 0f, ForceMode.Impulse);
+                Jugador.velocity = new Vector3(Jugador.velocity.x, JumpPower, Jugador.velocity.z); 
                 CanJump = false;
             }
         }
-       
+        if (Jugador.velocity.y < 0)
+        {
+            Jugador.velocity += Vector3.up * Physics.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
+        }
 
     }
     private void OnCollisionEnter(Collision collision)
