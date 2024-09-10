@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Suelo
   - Points
+  - Enemy
+  - Meta
   layers:
   - Default
   - TransparentFX
