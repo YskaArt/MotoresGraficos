@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -12,6 +13,11 @@ public class PlayerMovement : MonoBehaviour
     public Rigidbody Jugador;
     private bool CanJump;
     public float fallMultiplier = 2.5f;
+    [SerializeField] private GameObject Gameover;
+    private void Awake()
+    {
+        Gameover.SetActive(false);
+    }
     void Update()
     {
         Speed = MinSpeed;
@@ -55,6 +61,28 @@ public class PlayerMovement : MonoBehaviour
         { 
             CanJump = true;
         }
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            Time.timeScale = 0f;
+            Gameover.SetActive(true);
+        }
+        if (collision.gameObject.CompareTag("Meta"))
+        {
+            SceneManager.LoadScene(1);
+
+        }
+    }
+    public void Reiniciar()
+    {
+
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 
     }
+    public void Salir()
+    {
+        Application.Quit();
+
+    }
+
 }
