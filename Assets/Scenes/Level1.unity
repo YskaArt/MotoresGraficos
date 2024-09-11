@@ -3407,9 +3407,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inputControl: {x: 0, y: 0}
-  MinSpeed: 60
+  MinSpeed: 20
   Speed: 40
-  MaxSpeed: 120
+  MaxSpeed: 60
   JumpPower: 30
   Jugador: {fileID: 1325969629}
   fallMultiplier: 6
